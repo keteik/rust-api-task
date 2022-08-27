@@ -1,6 +1,7 @@
-use actix_web::{get, App, HttpServer, web, Responder, Result};
+use actix_web::{get, App, HttpServer, web, Responder, Result, middleware::Logger};
 use serde::{Deserialize, Serialize};
 use rand::{Rng, rngs::ThreadRng};
+use env_logger::Env;
 
 #[derive(Deserialize)]
 struct FuelInfo {
@@ -45,9 +46,11 @@ async fn test(_req_params: web::Query<CarInfo>) -> Result<impl Responder> {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    env_logger::init_from_env(Env::default().default_filter_or("info"));
 
     HttpServer::new(|| {
         App::new()
+            .wrap(Logger::new("%a %r %s %{User-Agent}i"))
             .service(fuel_consuption)
             .service(test)
     })

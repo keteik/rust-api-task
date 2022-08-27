@@ -1,4 +1,4 @@
-# Installation
+# Install
 
 Install Rust:
 
@@ -37,6 +37,7 @@ cargo run
 # Endpoints
 
 ## /calculateDisselUsageForDistance
+
 **http://localhost:3000/calculateDisselUsageForDistance?distance=327&yearOfProduction=1997&fuelUsagePer100KM=7**
 
 ```
@@ -46,10 +47,8 @@ curl
 ```
 
 ## /probabilityOfUnitInjectorFail
+
 **http://localhost:3000/probabilityOfUnitInjectorFail?VIN=4Y1SL65848Z411439**
-
-
-Only POST reqests are accepted. Email and password fields in JSON format are required in body:
 
 ```
 curl 
